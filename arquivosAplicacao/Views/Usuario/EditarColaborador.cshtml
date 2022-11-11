@@ -1,0 +1,40 @@
+﻿@model Colaborador
+
+<!-- Esta view teria o principio de editar colaboradores que ja tiveram seu cadastro completo preenchido -->
+<div class="cadastroFull">
+  <div class="cadastro">
+        <h1 style="color:antiquewhite;margin-left:0;">Editar colaborador</h1>
+        <form>
+            <div class="row">
+                <div class="col-6">
+                    <label class="form-label">Nome completo</label>
+                    <input name="NomeCompleto" type="text" class="form-control" value="@Model.NomeCompleto"/>
+                    <label class="form-label">Idade</label>
+                    <input name="Idade" type="text" class="form-control" value="@Model.Idade" />
+                    <select name="EstadoCivil" id="estadoCivil" type="text" class="form-select" >
+                        <option value="@Model.EstadoCivil">@Model.EstadoCivil</option>
+                        <option value="Solteiro">Solteiro</option>
+                        <option value="Casado">Casado</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Cep</label>
+                    <input name="Cep" type="text" class="form-control" value="@Model.Cep"/>
+                    <label class="form-label">Logradouro</label>
+                    <input name="Logradouro" type="text" class="form-control" value="@Model.Logradouro" />
+                    <label class="form-label">Bairro</label>
+                    <input name="Bairro" type="text" class="form-control" value="@Model.Bairro" />
+                    <label class="form-label">Localidade</label>
+                    <input name="Localidade" type="text" class="form-control" value="@Model.Localidade"/>
+                    <label class="form-label">Uf</label>
+                    <input name="Uf" type="text" class="form-control" value="@Model.Uf"/>
+                    <label class="form-label">DDD</label>
+                    <input name="Ddd" type="text" class="form-control" value="@Model.Ddd"/>
+                </div>
+            </div>
+            <button asp-controller="Usuario" asp-action="Index" type="submit" class="btn">Salvar atualizações</button>
+        </form>
+  </div>
+</div>
+
+       

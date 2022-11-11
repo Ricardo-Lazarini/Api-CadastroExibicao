@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CadastroComApi.Models.ApiLocal>
+
+
+
+<div class="localizacao">
+    <h1>Dados do território brasileiro</h1>
+    <!-- Formulario de pesquisa por regiao -->
+    <form method="post" asp-controller="Localizacao" asp-action="Index">
+        <div class="row">
+            <div class="col-9">
+                <select name="query" class="form-select">
+                    <option></option>
+                    <option>Centro-Oeste</option>
+                    <option>Sudeste</option>
+                    <option>Sul</option>
+                    <option>Nordeste</option>
+                    <option>Norte</option>
+                </select>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn btn-primary">Pesquisar</button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-4">
+            <div class="mapa">
+                <img src="~/img/mapa.png" />
+            </div>
+        </div>
+        <!-- Exibe os dados da api localização, por região ou todos os estados-->
+        <div class="col-8" style="border-left: solid 1px lightgrey">
+            <div class="tabela">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Capital</th>
+                            <th scope="col">Regiao</th>
+                            <th scope="col">Uf</th>
+                            <th scope="col">População</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model)
+                        {
+                            <tr>
+                                <td>@item.Estado</td>
+                                <td>@item.Capital</td>
+                                <td>@item.Regiao</td>
+                                <td>@item.Uf</td>
+                                <td>@item.Populacao</td>
+                            </tr>   
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

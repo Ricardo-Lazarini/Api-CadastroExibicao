@@ -1,0 +1,59 @@
+﻿@model Localizacao
+
+<!-- Faz um cadastro mais completo do usuario (colaborador) -->
+<div class="cadastroFull">
+    <h1> Insira seus dados completos</h1>
+    <div class="cadastro">
+        <form method="post" asp-controller="Usuario" asp-action="createColaborador">
+            <div class="row">
+                <div class="col-6">
+                    <label class="form-label">Nome completo</label>
+                    <input id="nomeCompleto" name="NomeCompleto" type="text" class="form-control" maxlength="40"/>
+                    <label class="form-label">Idade</label>
+                    <input id="idade" name="Idade" type="text" class="form-control" maxlength="8"/>
+                    <label class="form-label">Estado Civil</label>
+                    <select name="EstadoCivil" id="estadoCivil" type="text" class="form-select" >
+                        <option></option>
+                        <option value="Solteiro">Solteiro</option>
+                        <option value="Casado">Casado</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label class="form-label">Cep</label>
+                    <input name="Cep" id="cep" type="text" class="form-control" maxlength="8" value="@Model.localizacao.Cep"/>
+                    <span></span>
+                    <label class="form-label">Logradouro</label>
+                    <input name="Logradouro" type="text" class="form-control" maxlength="8" value="@Model.localizacao.Logradouro"/>
+                    <span></span>
+                    <label class="form-label">Bairro</label>
+                    <input name="Bairro" type="text" class="form-control" maxlength="8" value="@Model.localizacao.Bairro"/>
+                    <span></span>
+                    <label class="form-label">Localidade</label>
+                    <input name="Localidade" type="text" class="form-control" maxlength="8" value="@Model.localizacao.Localidade"/>
+                    <span></span>
+                    <label class="form-label">Uf</label>
+                    <input name="Uf" type="text" class="form-control" maxlength="8" value="@Model.localizacao.Uf"/>
+                    <span></span>
+                    <label class="form-label">DDD</label>
+                    <input name="Ddd" type="text" class="form-control" maxlength="8" value="@Model.localizacao.Ddd"/>
+                    <span></span>
+                    <input name="UsuarioId" type="hidden" value="@Model.UsuarioId"/>
+                </div>
+            </div>
+            <button id="salvar" type="submit" class="btn">Salvar</button>
+        </form>
+        <!--
+            Este form é responsavel por fazer a requisição para a Api ViaCep
+            Assim que o cursor sai do input de cep do formulario acima, um evento javascrcipt é disparado, adiciona o cep neste formulario e o aciona para fazer a requisição e os dados 
+            retornados, preenchem os campos acima relacionados à localização de forma automatica.
+        -->
+        <form method="post" asp-controller="Usuario" asp-action="CadastroColaboradores" >
+            <input id="cepquery" name="cep" type="hidden" class="form-control"/>
+            <button style="display:none" id="pesquisar"  type="submit" class="btn btn-success">Pesquisar</button>
+        </form>
+    </div>
+</div>
+
+   
+
+

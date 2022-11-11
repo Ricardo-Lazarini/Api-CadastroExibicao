@@ -1,0 +1,26 @@
+﻿
+<div class="administrativo">
+    <div class="row">
+        <div class="col-2">
+            <div class="menu">
+                <h2>Menu</h2>
+                <a class="dropdown-item" href="/Usuario/Index">Colaboradores</a>
+                <a class="dropdown-item" href="/Usuario/Index">Clima tempo</a>
+                <a class="dropdown-item" href="/Localizacao/Index">Localizações</a>
+                <a class="dropdown-item" href="/Localizacao/Index">Sair do sistema</a>
+                <img src="~/img/iconeapi.png"/>
+                @if(TempData["erroAoCarregar"] != null)
+                {
+                    <h4>@TempData["erroAoCarregar"]</h4>
+                }
+            </div> <!-- Fim da Menu-->
+        </div>
+        <div class="col-10">
+            <div class="body-adm">
+                <h2>APIs</h2>
+                <img src="~/img/ti.png" />
+            </div>
+        </div>
+    </div>
+</div>
+

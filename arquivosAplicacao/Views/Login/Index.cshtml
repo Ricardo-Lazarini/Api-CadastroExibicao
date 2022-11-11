@@ -1,0 +1,75 @@
+﻿
+<div class="page-login">
+    
+        @if(TempData["msgAlert"] != null)
+        {
+            <div class="msgAlert">
+                <h3>@TempData["msgAlert"]</h3>
+            </div>
+        }
+    
+    <div class="page-login-body">
+        <div class="row">
+            <div class="col-3">
+               <div class="imgleft">
+                   <!-- Abre um modal para cadastrar uma conta-->
+                    <!-- Button trigger modal -->
+                    <button id="abrirCriarConta" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Crie uma conta
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <img src="~/img/user.png" />                
+                            <h5 class="modal-title" id="exampleModalLabel">Crie sua conta.</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="criarConta">
+                                    <form method="post" asp-controller="Usuario" asp-action="CriarContaUsuario">
+                                        <label class="form-label">Email</label>
+                                        <input name="Email" class="form-control" id="emailcadastro"/>
+                                        <label class="form-label">Senha</label>
+                                        <input name="Senha" type="password" class="form-control" id="senhacadastro"/>
+                                        <button type="submit" class="btn">Criar conta</button>
+                                    </form>
+                                 </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+            <!-- Formulario para logar no sistema -->
+            <div class="col-9">
+                <div class="entrar">
+                    <img src="~/img/usuario.png"/>
+                    <div class="msgerro"> 
+                        @if(@TempData["msg"] == null){
+                            <h6 style="font-size:25px;color:#36849d;">Login</h6>
+                        }
+                        else
+                        {
+                            @TempData["msg"];
+                        }
+                    </div>
+                    <form method="post" asp-controller="Usuario" asp-action="Logar">
+                        <label class="form-label">Email</label>
+                        <input name="email" class="form-control" id="emaillogar"/>
+                        <label class="form-label">Senha</label>
+                        <input name="senha" type="password" class="form-control" id="senhalogar"/>
+                        <button type="submit" class="btn">Entrar</button>
+                        <div class="footer-icons">
+                            <img id="l1" src="~/img/linkedin.png" />
+                            <img id="l2" src="~/img/instagran.png" />
+                            <img id="l3" src="~/img/facebook.png" />
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

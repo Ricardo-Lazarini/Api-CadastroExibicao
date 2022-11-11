@@ -1,0 +1,92 @@
+﻿@model  Clima
+
+@{
+    var temp = Math.Round(( Model.main.temp )  - 273.15);
+    var temp_max = Math.Round(( Model.main.temp_max )  - 273.15);
+    var temp_min = Math.Round(( Model.main.temp_min )  - 273.15);
+    var h = @DateTime.Now;
+}
+
+<div class="home">
+    <!-- caso a consulta na api OpenWeather falhe, ela exibira uma mensagem de erro nesta div -->
+    @if (TempData["erroNaConsulta"] != "" && TempData["erroNaConsulta"] != "inicio")
+    {
+        <div class="erroCosultaCidade">@TempData["erroNaConsulta"]</div>
+    }else{
+        <div class="erroCosultaCidade" style="display:none;">@TempData["erroNaConsulta"]</div>
+    }
+
+   <h1>Consumo de Apis</h1>
+   <div class="row">
+       <div class="col-4">
+         <div class="climaTempo">
+             <!-- Formulario para fazer a pesquisa de condição metereológica por cidade. -->
+             <form method="post" asp-controller="Home" asp-action="Index">
+                 <div class="row">
+                     <div class="col-7">
+                         <input name="query" class="form-control" placeholder="Pesquise o clima por cidade"/>
+                     </div>
+                     <div class="col-4">
+                         <button type="submit" class="btn btn-primary">Pesquisar</button>
+                     </div>
+                   </div>
+             </form>
+             <!-- Exibe os dados que foram retornados através da pesquisa por cidade. Caso não retorne nada, exibirá da cidade de São Carlos -->
+             <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-4">
+                         @foreach (var item in @Model.weather)
+                            {
+                                if(@item.main == "Clouds")
+                                {
+                                    <img src="~/img/nuven.png" class="card-img-top" alt="...">
+                                }else if (@item.main == "Clear"){
+                                     <img src="~/img/sol.png" class="card-img-top" alt="...">
+                                }else if (@item.main == "Rain"){
+                                     <img src="~/img/rain.png" class="card-img-top" alt="...">
+                                }else{
+                                      <img src="~/img/login.png" class="card-img-top" alt="...">
+                                }
+                            }
+                            </div>
+                      <div class="col-8">
+                            <h5 class="card-title">Previão do tempo.</h5>
+                            <div class="cidade">@Model.name <small> -  @Model.sys.country</small> </div>
+                            <div class="dados">Temperatura agora  <small> @temp °C </small></div>
+                            <div class="dados"> Maxima  <small> @temp_max °C</small></div>
+                            <div class="dados"> Minima  <small> @temp_min °C</small></div>
+                            @foreach (var item in @Model.weather)
+                            {
+                                <div class="dados"> Previsão  <small> @item.main </small>  </div>
+                            }
+                      </div>
+                  </div>
+              </div>
+            </div>
+         </div>
+       </div>
+       <div class="col-8">
+           <!-- Breve descrição do que o projeto faz -->
+            <div class="descricao">
+                <h2> Objetivo desta aplicação é consumir dados de três apis. </h2>
+                <ul>
+                    <li>Api OpenWeather :</li>
+                    <li class="desc">
+                        Esta api esta na web. <br />
+                        Fornece dados de condições metereológicas. <br />
+                        Seus dados serão usados para exibir na tela principal, dados metereológicos por cidade.</li>
+                    <li>Api localização :</li>
+                    <li class="desc"> 
+                        Esta api esta em uma maquina local. <br />
+                        Fornece dados dos estados brasileiros. <br />
+                        Pode exibir estes dados por região ou todos os estados do país.</li>
+                    <li>Api ViaCep :</li>
+                    <li class="desc">
+                        Esta api esta na web. <br />
+                        Seus dados são consumidos nesta apliação para cadastro de endereço de usuarios em um banco de dados Mysql.</li>
+                </ul>
+            </div>
+       </div>
+   </div>
+</div>

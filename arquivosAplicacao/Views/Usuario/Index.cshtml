@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CadastroComApi.Models.Usuario>
+
+<!-- Index de usuarios. Exibe as contas cadastradas -->
+<div class="usuario">
+    <div class="header-usuario">
+        <a id="voltar" class="btn" href="/Administrativo/Index"> Voltar</a>
+        <div class="total-usuario">@Model.Count() <small>usuarios cadastrados</small></div>
+    </div>
+    <div class="body-usuario">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">Editar | Excluir | Vizualizar</th>
+            </tr>
+            </thead>
+        <tbody>
+            @foreach (var item in @Model)
+            {
+                <tr>
+                     <td>@item.Email</td>
+                    <td> 
+                        <a id="editar" asp-controller="Usuario" asp-action="CadastroColaboradores" asp-route-id="@item.Id">Editar</a> | 
+                        <a id="excluir"  asp-controller="Usuario" asp-action="ExcluirColaborador" asp-route-id="@item.Id"  onclick="confirm('Voce tem certeza que deseja excluir este usuario ?')">Excluir</a>  |
+                        <a id="visualizar" asp-controller="Usuario" asp-action="" asp-route-id="@item.Id">Visualizar</a>  
+                    </td>
+                </tr>
+            }
+        </tbody>
+        </table>
+    </div>
+</div>
+

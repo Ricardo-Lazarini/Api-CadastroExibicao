@@ -1,0 +1,107 @@
+Data 11/11/2022-14:28
+
+	CONSUMO DE API.
+
+	Este projeto tem como base, o consumo de três apis. Sendo duas localizadas na web e uma na maquina local.
+
+	Tecnologias usadas:
+	- C# 
+	- Asp.net
+	- Javascript
+	- Bootstrap
+	- HTML
+	- CSS
+	- Mysql
+
+	Dependencias:
+	- Microsoft.EntityFrameworkCore.Tools
+	- Pomelo.EntityFrameworkCore.MySql
+	- Newtonsoft.Json
+
+
+	Apis:
+
+	- OpenWeather :
+	- Esta api esta na web.
+	- Fornece dados de condições metereológicas.
+	- Seus dados serão usados para exibir na tela principal, dados metereológicos por cidade.
+
+	Api localização :
+	- Esta api esta em uma maquina local.
+	- Fornece dados dos estados brasileiros.
+	- Pode exibir estes dados por região ou todos os estados do país.
+
+	Api ViaCep :
+	- Esta api esta na web.
+	- Seus dados são consumidos nesta apliação para cadastro de endereço de usuarios em um banco de dados Mysql.	
+
+
+	
+	CONTROLLERS 
+
+	Home
+	Nesta controller é feito o consumo da api OpenWeather.
+	É exibido através de um painel, dados metereológicos da cidade pesquisada. Pode ser em todo o planeta.
+	Caso o controller Index não receba nenhuma pesquisa por cidade, ele faz uma requisição dos dados metereológicos da cidade de São Carlos. 
+        Caso receba uma pesquisa por cidade que não exista ou não esta em sua base de dados, ele retorna uma mensagem de erro e a exibe para o usuario.
+
+	
+	Administrativo e Login
+	Estes dois controllers apenas abrem as paginas index de seus projetos.
+
+
+	Localizacoes
+	Faz a requisição para a api local de dados de localização do Brasil.
+	Estes dados são de estado, capital, região, uf e população.
+        Estes dados estão em um SGBD mysql.
+	Seus dados podem ser consumidos por pesquisa através de região, onde devolverá apenas os dados relacionados à região pesquisada, ou todos os estados.
+
+	
+	Usuarios
+	Neste controller são feitas as criações de cadastro de contas e também onde são feitos os cadastro mais completos após o usuario criar sua conta.
+	Os dados de login e senha são salvos em uma tabela e ao fazer um cadastro mais completo, estes dados são enviados para uma outra tabela, criando uma relação 
+	entre elas. 	
+	Aqui também é feito o consumo da Api ViaCep. Quando informado o cep e o cursor tem seu foco tirado do input de cep, é feito uma requisição para a Api e todos os
+	dados de localização são preenchidos de forma automatica com base no cep pesquisado. Caso não retorne nada, permanece na mesma tela.
+
+
+	
+	Models
+
+	Todas as classes dentro desta pasta, com excessão da Conexão, contém os atributos necessários para o mapeamento de cada api ou os cadastros realizados no sistema.
+
+	Conexão
+	Esta classe contém os métodos necessários para a conexão com o banco de dados.
+
+
+
+	Views.
+	Todas as views contém as informações relacionadas a cada parte do projeto relacionadas com seu nome.
+
+
+	Conclusão:
+	Não existem grandes regras de negócio nesta aplicação, uma vez que seu objetivo maior não é comercializa-la e sim entender sua estrutura funcionalidades.
+	Como cada pesssoa configura a aplicação de sua maneira, subi no git a parte essencial para que a aplicação funcione.
+	Estão aqui no GitHub:
+	Toda a estrutura  MVC, css, js, imagens e o arquivo sql para criação do banco de dados.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
