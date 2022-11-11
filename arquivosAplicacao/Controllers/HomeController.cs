@@ -33,7 +33,7 @@ namespace CadastroComApi.Controllers
                 var urlOpenWeather = $"https://api.openweathermap.org/data/2.5/weather?q={city}&lang={lang}&appid={key}";
                 HttpClient clima = new HttpClient();
                 var response = await clima.GetStringAsync(urlOpenWeather);
-                var urlConvert = JsonConvert.DeserializeObject<Clima>(response); // Transforma o que é texto em objeto
+                var urlConvert = JsonConvert.DeserializeObject<Clima>(response); 
                 TempData["erroNaConsulta"] = erroNaConsulta;
 
                 return View(urlConvert);
