@@ -43,7 +43,7 @@ namespace CadastroComApi.Controllers
                 var urlOpenWeather = $"https://api.openweathermap.org/data/2.5/weather?q={"São CArlos"}&appid={key}";
                 HttpClient clima = new HttpClient();
                 var response = await clima.GetStringAsync(urlOpenWeather);
-                var urlConvert = JsonConvert.DeserializeObject<Clima>(response); // Transforma o que é texto em objeto
+                var urlConvert = JsonConvert.DeserializeObject<Clima>(response); 
 
                 erroNaConsulta = "Algo deu errado. Verifique a cidade e tente novamente.";
                 TempData["erroNaConsulta"] = erroNaConsulta;
